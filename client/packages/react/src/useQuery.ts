@@ -82,7 +82,7 @@ export function useQueryInternal<
   const state = useSyncExternalStore<InstaQLLifecycleState<Schema, Q>>(
     subscribe,
     () => resultCacheRef.current,
-    () => defaultState,
+    () => (query ? defaultState : { ...defaultState, isLoading: false }),
   );
   return { state, query };
 }
